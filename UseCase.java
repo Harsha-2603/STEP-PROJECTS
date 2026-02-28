@@ -1,25 +1,21 @@
-import java.util.Stack;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
-public class UseCase {
+public class UseCasePalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "level";
-
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        String input = "racecar";
+        Deque<Character> deque = new ArrayDeque<>();
 
         for (char ch : input.toCharArray()) {
-            stack.push(ch);
-            queue.add(ch);
+            deque.addLast(ch);
         }
 
         boolean isPalindrome = true;
 
-        while (!stack.isEmpty()) {
-            if (!stack.pop().equals(queue.remove())) {
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
                 isPalindrome = false;
                 break;
             }

@@ -1,26 +1,22 @@
-import java.util.LinkedList;
-
 public class UseCase {
+
+    public static boolean isPalindrome(String str, int left, int right) {
+        if (left >= right) {
+            return true;
+        }
+        if (str.charAt(left) != str.charAt(right)) {
+            return false;
+        }
+        return isPalindrome(str, left + 1, right - 1);
+    }
 
     public static void main(String[] args) {
 
-        String input = "madam";
-        LinkedList<Character> list = new LinkedList<>();
+        String input = "level";
 
-        for (char ch : input.toCharArray()) {
-            list.add(ch);
-        }
+        boolean result = isPalindrome(input, 0, input.length() - 1);
 
-        boolean isPalindrome = true;
-
-        while (list.size() > 1) {
-            if (!list.removeFirst().equals(list.removeLast())) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        if (isPalindrome) {
+        if (result) {
             System.out.println("The given string is a Palindrome");
         } else {
             System.out.println("The given string is NOT a Palindrome");

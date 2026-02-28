@@ -1,11 +1,6 @@
-interface PalindromeStrategy {
-    boolean isPalindrome(String input);
-}
+public class UseCase {
 
-// Strategy 1: Two Pointer Method
-class TwoPointerStrategy implements PalindromeStrategy {
-
-    public boolean isPalindrome(String input) {
+    public static boolean twoPointerMethod(String input) {
         int left = 0;
         int right = input.length() - 1;
 
@@ -18,33 +13,28 @@ class TwoPointerStrategy implements PalindromeStrategy {
         }
         return true;
     }
-}
 
-// Strategy 2: Reverse String Method
-class ReverseStringStrategy implements PalindromeStrategy {
-
-    public boolean isPalindrome(String input) {
+    public static boolean reverseMethod(String input) {
         String reversed = new StringBuilder(input).reverse().toString();
         return input.equals(reversed);
     }
-}
-
-public class UseCase {
 
     public static void main(String[] args) {
 
-        String input = "level";
+        String input = "A man a plan a canal Panama".replaceAll("\\s+", "").toLowerCase();
 
-        // Choose strategy
-        PalindromeStrategy strategy = new TwoPointerStrategy();
-        // PalindromeStrategy strategy = new ReverseStringStrategy();
+        long start1 = System.nanoTime();
+        boolean result1 = twoPointerMethod(input);
+        long end1 = System.nanoTime();
 
-        boolean result = strategy.isPalindrome(input);
+        long start2 = System.nanoTime();
+        boolean result2 = reverseMethod(input);
+        long end2 = System.nanoTime();
 
-        if (result) {
-            System.out.println("The given string is a Palindrome (Strategy Pattern)");
-        } else {
-            System.out.println("The given string is NOT a Palindrome");
-        }
+        System.out.println("Two Pointer Result: " + result1);
+        System.out.println("Two Pointer Time: " + (end1 - start1) + " ns");
+
+        System.out.println("Reverse Method Result: " + result2);
+        System.out.println("Reverse Method Time: " + (end2 - start2) + " ns");
     }
 }

@@ -1,28 +1,33 @@
-public class UseCase {
+class PalindromeService {
 
-    public static void main(String[] args) {
-
-        String input = "A man a plan a canal Panama";
-
-        // Normalize: remove spaces and convert to lowercase
-        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+    public boolean isPalindrome(String input) {
 
         int left = 0;
-        int right = normalized.length() - 1;
-
-        boolean isPalindrome = true;
+        int right = input.length() - 1;
 
         while (left < right) {
-            if (normalized.charAt(left) != normalized.charAt(right)) {
-                isPalindrome = false;
-                break;
+            if (input.charAt(left) != input.charAt(right)) {
+                return false;
             }
             left++;
             right--;
         }
 
-        if (isPalindrome) {
-            System.out.println("The given string is a Palindrome (ignoring case & spaces)");
+        return true;
+    }
+}
+
+public class UseCase {
+
+    public static void main(String[] args) {
+
+        String input = "radar";
+
+        PalindromeService service = new PalindromeService();
+        boolean result = service.isPalindrome(input);
+
+        if (result) {
+            System.out.println("The given string is a Palindrome (OOP Design)");
         } else {
             System.out.println("The given string is NOT a Palindrome");
         }

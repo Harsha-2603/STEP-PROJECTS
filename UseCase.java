@@ -1,21 +1,25 @@
-
 import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class UseCase {
 
     public static void main(String[] args) {
 
-        String input = "madam1";
-        Stack<Character> stack = new Stack<>();
+        String input = "level";
 
-        for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+        Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
+
+        for (char ch : input.toCharArray()) {
+            stack.push(ch);
+            queue.add(ch);
         }
 
         boolean isPalindrome = true;
 
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != stack.pop()) {
+        while (!stack.isEmpty()) {
+            if (!stack.pop().equals(queue.remove())) {
                 isPalindrome = false;
                 break;
             }

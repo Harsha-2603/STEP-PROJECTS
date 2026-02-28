@@ -1,17 +1,30 @@
+
+import java.util.Stack;
+
 public class UseCase {
+
     public static void main(String[] args) {
 
-        String word = "madam";
-        String reversed = "";
+        String input = "madam1";
+        Stack<Character> stack = new Stack<>();
 
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversed += word.charAt(i);
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
         }
 
-        if (word.equals(reversed)) {
-            System.out.println(word + " is a palindrome");
+        boolean isPalindrome = true;
+
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        if (isPalindrome) {
+            System.out.println("The given string is a Palindrome");
         } else {
-            System.out.println(word + " is not a palindrome");
+            System.out.println("The given string is NOT a Palindrome");
         }
     }
 }

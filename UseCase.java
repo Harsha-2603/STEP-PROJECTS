@@ -1,21 +1,20 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.LinkedList;
 
-public class UseCasePalindromeCheckerApp {
+public class UseCase {
 
     public static void main(String[] args) {
 
-        String input = "racecar";
-        Deque<Character> deque = new ArrayDeque<>();
+        String input = "madam";
+        LinkedList<Character> list = new LinkedList<>();
 
         for (char ch : input.toCharArray()) {
-            deque.addLast(ch);
+            list.add(ch);
         }
 
         boolean isPalindrome = true;
 
-        while (deque.size() > 1) {
-            if (!deque.removeFirst().equals(deque.removeLast())) {
+        while (list.size() > 1) {
+            if (!list.removeFirst().equals(list.removeLast())) {
                 isPalindrome = false;
                 break;
             }
